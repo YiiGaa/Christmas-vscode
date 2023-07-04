@@ -38,14 +38,14 @@ Christmas contains five major functions
 
 > 工程目录中的Christmas工具必须是2.0或以上版本。
 
-![avatar](resources/use.png)
+![avatar](https://github.com/YiiGaa/Christmas-vscode/raw/main/resources/use.png)
 
 The extension is automatically started when the first level of the project directory contains Christams.
 
 > The Christmas tool in the project directory must be version 2.0 or higher.
 
 
-![avatar](resources/use_en.png)
+![avatar](https://github.com/YiiGaa/Christmas-vscode/raw/main/resources/use_en.png)
 
 ---
 
