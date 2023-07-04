@@ -1,0 +1,132 @@
+{
+  "name": "christmas",
+  "displayName": "Christmas",
+  "publisher": "Christmas",
+  "description": "A extension for the Christmas tool, which is a generic code generator.",
+  "version": "1.0.0",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE",
+  "icon":"resources/logo.png",
+  "engines": {
+    "vscode": "^1.79.0"
+  },
+  "keywords": [
+		"Christmas",
+		"stoprefactoring",
+		"stop refactoring"
+	],
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/YiiGaa/Christmas-vscode"
+	},
+  "readme": "README.md",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:Christmas",
+    "workspaceContains:Christmas/Christmas.py"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration":{
+      "title": "Typescript",
+      "properties": {
+        "typescript.active": {
+          "type": "boolean",
+          "default": false,
+          "description": "Complete functions with their parameter signature."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "christmas",
+          "title": "Christmas",
+          "icon": "resources/logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "christmas": [
+        {
+          "id": "christmas-menu",
+          "name": "menu",
+          "when": "viewEnabled"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "Christmas.open",
+        "title": "open file"
+      },
+      {
+        "command": "Christmas.refresh",
+        "title": "Refresh",
+        "icon": {
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "Christmas.run",
+        "title": "run task",
+        "icon": {
+          "light": "resources/light/run.svg",
+          "dark": "resources/dark/run.svg"
+        }
+      },
+      {
+        "command": "Christmas.config",
+        "title": "config",
+        "icon": {
+          "light": "resources/light/gear.svg",
+          "dark": "resources/dark/gear.svg"
+        }
+      }
+    ],
+    "menus":{
+      "view/title": [
+        {
+          "command": "Christmas.refresh",
+          "when": "view == christmas-menu",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "Christmas.run",
+          "when": "view == christmas-menu  && viewItem == task",
+          "group": "inline@1"
+        },{
+          "command": "Christmas.config",
+          "when": "view == christmas-menu && viewItem == task",
+          "group": "inline@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.79.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4",
+    "@vscode/test-electron": "^2.3.0"
+  }
+}
