@@ -3,7 +3,7 @@
   "displayName": "Christmas",
   "publisher": "Christmas",
   "description": "A extension for the Christmas tool, which is a generic code generator.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "icon":"resources/logo.png",
@@ -59,8 +59,16 @@
     },
     "commands": [
       {
+        "command": "Christmas.runDouble",
+        "title": "run task"
+      },
+      {
         "command": "Christmas.open",
-        "title": "open file"
+        "title": "open target file",
+        "icon": {
+          "light": "resources/light/list-tree.svg",
+          "dark": "resources/dark/list-tree.svg"
+        }
       },
       {
         "command": "Christmas.refresh",
@@ -80,7 +88,7 @@
       },
       {
         "command": "Christmas.config",
-        "title": "config",
+        "title": "open config file",
         "icon": {
           "light": "resources/light/gear.svg",
           "dark": "resources/dark/gear.svg"
@@ -101,9 +109,13 @@
           "when": "view == christmas-menu  && viewItem == task",
           "group": "inline@1"
         },{
-          "command": "Christmas.config",
+          "command": "Christmas.open",
           "when": "view == christmas-menu && viewItem == task",
           "group": "inline@2"
+        },{
+          "command": "Christmas.config",
+          "when": "view == christmas-menu && viewItem == task",
+          "group": "inline@3"
         }
       ]
     }

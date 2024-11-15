@@ -34,17 +34,17 @@ export class DepNodeProvider implements vscode.TreeDataProvider<Menu> {
                     vscode.TreeItemCollapsibleState.None,
                     rootPath,
                     `${path.join('Input', element.label, temp)}`,
-                    {command: 'Christmas.open', title: '', arguments: [rootPath]}
+                    {command: 'Christmas.runDouble', title: '', arguments:[`${path.join('Input', element.label, temp)}`]}
                 ));
             }
             return Promise.resolve(result);
         } else {
             const list = this.readDirectory(path.join(this.workspaceRoot, 'Input'));
             const result:Menu[] = [];
-            for(const temp of list){
+            for(const temp of list){         
                 result.push(new Menu(
                     temp,
-                    vscode.TreeItemCollapsibleState.Collapsed,
+                    temp!=="ShellExcute"?vscode.TreeItemCollapsibleState.Collapsed:vscode.TreeItemCollapsibleState.Expanded,
                 ));
             }
             return Promise.resolve(result);
@@ -80,16 +80,20 @@ export class Task extends vscode.TreeItem {
 		public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly rootPath: string,
         public readonly task: string,
-		public readonly command?: vscode.Command
+		public readonly command?: vscode.Command,
+        targetFile?:string
 	) {
 		super(label, collapsibleState);
         this.tooltip = this.label;
+        this.targetFile = targetFile || "";
 	}
 
 	iconPath = {
 		light: path.join(__filename,'../', '../', 'resources', 'light', 'circle-outline.svg'),
 		dark: path.join(__filename,'../', '../', 'resources', 'dark', 'circle-outline.svg')
 	};
+
+    public targetFile: string;
 
     contextValue = 'task';
 }

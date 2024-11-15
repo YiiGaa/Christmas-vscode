@@ -26,7 +26,7 @@ class DepNodeProvider {
             const result = [];
             for (const temp of list) {
                 const rootPath = path.join(this.workspaceRoot, 'Input', element.label, temp);
-                result.push(new Task(temp, vscode.TreeItemCollapsibleState.None, rootPath, `${path.join('Input', element.label, temp)}`, { command: 'Christmas.open', title: '', arguments: [rootPath] }));
+                result.push(new Task(temp, vscode.TreeItemCollapsibleState.None, rootPath, `${path.join('Input', element.label, temp)}`, { command: 'Christmas.runDouble', title: '', arguments: [`${path.join('Input', element.label, temp)}`] }));
             }
             return Promise.resolve(result);
         }
@@ -34,7 +34,7 @@ class DepNodeProvider {
             const list = this.readDirectory(path.join(this.workspaceRoot, 'Input'));
             const result = [];
             for (const temp of list) {
-                result.push(new Menu(temp, vscode.TreeItemCollapsibleState.Collapsed));
+                result.push(new Menu(temp, temp !== "ShellExcute" ? vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.Expanded));
             }
             return Promise.resolve(result);
         }
@@ -62,7 +62,7 @@ class Menu extends vscode.TreeItem {
 }
 exports.Menu = Menu;
 class Task extends vscode.TreeItem {
-    constructor(label, collapsibleState, rootPath, task, command) {
+    constructor(label, collapsibleState, rootPath, task, command, targetFile) {
         super(label, collapsibleState);
         this.label = label;
         this.collapsibleState = collapsibleState;
@@ -75,6 +75,7 @@ class Task extends vscode.TreeItem {
         };
         this.contextValue = 'task';
         this.tooltip = this.label;
+        this.targetFile = targetFile || "";
     }
 }
 exports.Task = Task;
