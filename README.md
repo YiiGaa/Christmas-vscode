@@ -51,6 +51,18 @@ The extension is automatically started when the first level of the project direc
 
 ## 插件版本信息 Extension Release Notes
 
+### 1.2.0
+
+[update]适配Windows系统下，命令强制使用/，而非\
+
+[update] Compatible with Windows systems, the command forces the use of / instead of \
+
+### 1.1.0
+
+[update]适配Christmas2.2版本，target.json可存放在任意位置
+
+[Update] Adapted to Christmas2.2 version, target.json can be stored anywhere
+
 ### 1.0.0
 
 初始版本

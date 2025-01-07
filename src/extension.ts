@@ -31,7 +31,7 @@ function runChristmas(command:String){
 			terminalId = terminal.processId;
 		}
 		terminal.sendText('clear', true);
-		terminal.sendText(`python3 Christmas.py ${command}`, true);
+		terminal.sendText(`python3 Christmas.py ${command.replace(/\\/g, "/")}`, true);
 		terminal.show();
 }
 
