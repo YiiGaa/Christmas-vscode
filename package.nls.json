@@ -1,0 +1,6 @@
+{
+    "run task": "run task",
+    "open target file":"open target.json",
+    "refresh":"refresh plugin",
+    "open config file":"open config.json"
+}
