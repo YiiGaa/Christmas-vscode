@@ -51,6 +51,10 @@ The extension is automatically started when the first level of the project direc
 
 ## 插件版本信息 Extension Release Notes
 
+### 3.1.0
+[bug] 修复.xmas文件高亮与其他IDE不一致的问题
+[bug] Fixed the issue of .xmas file highlighting being inconsistent with other IDEs
+
 ### 3.0.0
 [bug] 修复不稳定bug
 [update] 版本号同步Christmas 

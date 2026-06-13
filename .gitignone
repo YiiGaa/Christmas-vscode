@@ -1,7 +1,9 @@
 node_modules/**
+node_modules/
 out/**
 dist/**
 package-lock.json
 .vscode/
 .idea/
 **/.DS_Store
+*.vsix

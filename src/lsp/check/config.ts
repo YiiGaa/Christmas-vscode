@@ -472,18 +472,43 @@ export const ChangeFile = function (path: any) {
 
 //TIPS::For insert highlight setting
 export const HightlightInsert = function(textList:any, type:number, index:number, char:number, length:number){
-    let insertIndex = 0;
+    if(length<=0)
+        return;
+
+    const newStart = char;
+    const newEnd = char + length;
+    const highlightList = [];
     for(const itemList of textList[index]["highlight"]){
-        if(itemList['char'] > char)
-            break;
-        if(itemList['char'] === char && itemList['length']>=length)
-            break;
-        insertIndex++;
+        const oldStart = itemList['char'];
+        const oldEnd = itemList['char'] + itemList['length'];
+        if(oldEnd<=newStart || oldStart>=newEnd){
+            highlightList.push(itemList);
+            continue;
+        }
+        if(oldStart<newStart){
+            highlightList.push({
+                char:oldStart,
+                length:newStart-oldStart,
+                type:itemList['type'],
+                modifiers:itemList['modifiers']
+            });
+        }
+        if(oldEnd>newEnd){
+            highlightList.push({
+                char:newEnd,
+                length:oldEnd-newEnd,
+                type:itemList['type'],
+                modifiers:itemList['modifiers']
+            });
+        }
     }
-    textList[index]["highlight"].splice(insertIndex, 0, {
+
+    highlightList.push({
         char:char,
         length:length,
         type:type,
         modifiers:0
     });
+    highlightList.sort((a:any, b:any)=>a.char-b.char || a.length-b.length);
+    textList[index]["highlight"] = highlightList;
 }
